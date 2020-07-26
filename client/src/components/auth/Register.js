@@ -27,7 +27,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
     const onSubmit = e => {
         e.preventDefault();
         if(password !== password2){
-            return setAlert('passwords do not match', 'danger');
+            return setAlert('As senhas não são iguais', 'danger');
         }
 
         register({name, email, password});
@@ -66,12 +66,12 @@ const Register = ({setAlert, register, isAuthenticated}) => {
 
     return (
         <Fragment>
-            <h1 className="large text-primary">Sign Up</h1>
-            <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+            <h1 className="large text-primary">Cadastro</h1>
+            <p className="lead"><i className="fas fa-user"></i> Crie sua Conta</p>
             <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                     <input type="text" 
-                    placeholder="Name" 
+                    placeholder="Nome" 
                     name="name" 
                     value={name}  
                     onChange={e => onChange(e)}
@@ -79,20 +79,18 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                 </div>
                 <div className="form-group">
                     <input type="email" 
-                    placeholder="Email Address" 
+                    placeholder="Email" 
                     name="email" 
                     value={email} 
                     onChange={e => onChange(e)}
                     required/>
                     <small className="form-text"
-                    >This site uses Gravatar so if you want a profile image, use a
-            Gravatar email</small
-                    >
+                    >Esse site usa Gravatar, então se você deseja ter uma foto de perfil, use um email Gravatar </small>
                 </div>
                 <div className="form-group">
                     <input
                         type="password"
-                        placeholder="Password"
+                        placeholder="Senha"
                         name="password"
                         minLength="6"
                         value={password} 
@@ -103,7 +101,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                 <div className="form-group">
                     <input
                         type="password"
-                        placeholder="Confirm Password"
+                        placeholder="Confirmar Senha"
                         name="password2"
                         minLength="6"
                         value={password2} 
@@ -111,11 +109,11 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                         required
                     />
                 </div>
-                <input type="submit" className="btn btn-primary" value="Register" />
+                <input type="submit" className="btn btn-primary" value="Cadastrar" />
             </form>
             <p className="my-1">
-                Already have an account? 
-                <Link to="/login">Sign In</Link>
+                Já tem uma conta? {' '}
+                <Link to="/login">Entrar</Link>
             </p>
         </Fragment>
     )

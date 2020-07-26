@@ -22,10 +22,10 @@ const Dashboard = ({
     return loading
     ? <Spinner /> 
     : <Fragment>
-        <h1 className="large text-primary">Dashboard</h1>
+        <h1 className="large text-primary">Meu Painel</h1>
         <p className="lead">
             <i className="fas fa-user"></i>
-            Welcome {user && user.name}
+            Bem-vindo(a) {user && user.name}
         </p>
         { profile !== null 
         ? <Fragment>
@@ -36,13 +36,13 @@ const Dashboard = ({
             <div className="my-2">
                 <button onClick={() => deleteAccount()} className="btn btn-danger">
                     <i className="fas fa-user-minus"></i>{' '}
-                    Delete My Account
+                    Deletar minha conta
                 </button>
             </div>
         </Fragment> 
         : <Fragment>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to='/create-profile' className="btn btn-primary my-1">Create profile</Link>
+            <p>Você ainda não criou seu perfil!</p>
+            <Link to='/create-profile' className="btn btn-primary my-1">Criar Perfil</Link>
         </Fragment> }
 
     </Fragment>;

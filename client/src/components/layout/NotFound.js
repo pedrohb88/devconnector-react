@@ -5,9 +5,9 @@ const NotFound = () => {
         <Fragment>
             <h1 className="x-large text-primary">
                 <i className="fas fa-exclamation-triangle"></i>
-                Page Not Found
+                Página não encontrada
             </h1>
-            <p className="large">Sorry, this page does nto exists</p>
+            <p className="large">Desculpe, essa página não existe :(</p>
         </Fragment>
     )
 }

@@ -12,15 +12,15 @@ const ProfileEducation = ({ education: {
                 <Moment format='DD/MM/YYYY'>{from}</Moment> - {!to ? ' Now': <Moment format='DD/MM/YYYY'>{to}</Moment>}
             </p>
             <p>
-                <strong>Degree: </strong>
+                <strong>Grau de Certificação: </strong>
                 {degree}
             </p>
             <p>
-                <strong>Field of Study: </strong>
+                <strong>Área de Estudo: </strong>
                 {fieldofstudy}
             </p>
             <p>
-                <strong>Description: </strong>
+                <strong>Descrição: </strong>
                 {description}
             </p>
         </div>

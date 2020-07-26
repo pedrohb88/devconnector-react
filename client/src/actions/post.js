@@ -110,7 +110,7 @@ export const deletePost = postId => async dispatch => {
             payload: postId
         });
 
-        dispatch(setAlert('Post Removed', 'success'));
+        dispatch(setAlert('Post deletado', 'success'));
 
     } catch (error) {
         dispatch({
@@ -139,7 +139,7 @@ export const addPost = formData => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert('Post Created', 'success'));
+        dispatch(setAlert('Post Criado', 'success'));
 
     } catch (error) {
         dispatch({
@@ -168,7 +168,7 @@ export const addComment = (postId, formData) => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert('Comment Added', 'success'));
+        dispatch(setAlert('Comentário Adicionado', 'success'));
 
     } catch (error) {
         dispatch({
@@ -191,7 +191,7 @@ export const deleteComment = (postId, commentId) => async dispatch => {
             payload: commentId
         });
 
-        dispatch(setAlert('Comment Removed', 'success'));
+        dispatch(setAlert('Comentário excluído', 'success'));
 
     } catch (error) {
         dispatch({

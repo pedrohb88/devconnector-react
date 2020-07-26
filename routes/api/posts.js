@@ -11,7 +11,7 @@ const Post = require('./../../models/Post');
 // @desc    Create a post
 // @access  Private
 router.post('/', [auth, [
-    check('text', 'Text is required').not().isEmpty(),
+    check('text', 'Texto é obrigatório').not().isEmpty(),
 ]], async (req, res) => {
 
     const errors = validationResult(req);

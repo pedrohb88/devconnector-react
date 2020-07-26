@@ -16,20 +16,20 @@ const Education = ({ education, deleteEducation }) => {
                 }
             </td>
             <td>
-                <button onClick={() => deleteEducation(edu._id)} className="btn btn-danger">Delete</button>
+                <button onClick={() => deleteEducation(edu._id)} className="btn btn-danger">Apagar</button>
             </td>
         </tr>
     ));
 
     return (
         <Fragment>
-            <h2 className="my-2">Education Credentials</h2>
+            <h2 className="my-2">Formação</h2>
             <table className="table">
                 <thead>
                     <tr>
-                        <th>School</th>
-                        <th className="hide-sm">Degree</th>
-                        <th className="hide-sm">Years</th>
+                        <th>Instituição</th>
+                        <th className="hide-sm">Grau de certificação</th>
+                        <th className="hide-sm">Data</th>
                         <th />
                     </tr>
                 </thead>

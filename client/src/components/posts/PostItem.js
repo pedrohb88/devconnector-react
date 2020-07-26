@@ -24,7 +24,7 @@ const PostItem = ({
 			<div>
 				<p className="my-1">{text}</p>
 				<p className="post-date">
-					Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+					Postado em <Moment format="DD/MM/YYYY">{date}</Moment>
 				</p>
 				{showActions && (
 					<Fragment>
@@ -44,7 +44,7 @@ const PostItem = ({
 							<i className="fas fa-thumbs-down"></i>
 						</button>
 						<Link to={`/posts/${_id}`} className="btn btn-primary">
-							Discussion{" "}
+							Comentários{" "}
 							{comments.length > 0 && (
 								<span className="comment-count">{comments.length}</span>
 							)}

@@ -26,8 +26,8 @@ router.get('/', auth, async (req, res) => {
 // @desc    Authenticate user & get token
 // @access  Public
 router.post('/', [
-    check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists()
+    check('email', 'Por favor, insira um Email válido').isEmail(),
+    check('password', 'Senha é obrigatória').exists()
 ], async (req, res) => {
     
     const errors = validationResult(req);
@@ -42,13 +42,13 @@ router.post('/', [
 
         let user = await User.findOne({email});
         if(!user){
-            return res.status(400).json({errors: [{msg: 'Invalid Credentials'}]});
+            return res.status(400).json({errors: [{msg: 'Credenciais inválidas'}]});
         }
 
        const isMatch = await bcrypt.compare(password, user.password);
 
        if(!isMatch){
-            return res.status(400).json({errors: [{msg: 'Invalid Credentials'}]});
+            return res.status(400).json({errors: [{msg: 'Credenciais inválidas'}]});
        }
 
         const payload = {

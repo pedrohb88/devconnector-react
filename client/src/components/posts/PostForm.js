@@ -10,7 +10,7 @@ const PostForm = ({ addPost }) => {
 	return (
 		<div class="post-form">
 			<div class="bg-primary p">
-				<h3>Say Something...</h3>
+				<h3>Diga alguma coisa...</h3>
 			</div>
 			<form class="form my-1" onSubmit={e => {
                 e.preventDefault();
@@ -23,10 +23,10 @@ const PostForm = ({ addPost }) => {
 					name="text"
 					cols="30"
 					rows="5"
-					placeholder="Create a post"
+					placeholder="Criar um post"
 					required
 				></textarea>
-				<input type="submit" class="btn btn-dark my-1" value="Submit" />
+				<input type="submit" class="btn btn-dark my-1" value="Enviar" />
 			</form>
 		</div>
 	);

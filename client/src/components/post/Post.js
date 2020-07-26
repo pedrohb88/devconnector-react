@@ -18,7 +18,7 @@ const Post = ({ getPost, post: {post, loading}, match }) => {
     return loading || post === null 
     ? <Spinner />
     : <Fragment>
-        <Link to='/posts' className="btn">Back to Posts</Link>
+        <Link to='/posts' className="btn">Voltar para o Feed</Link>
         <PostItem post={post} showActions={false}/>
         <CommentForm postId={post._id}/>
         <div className="comments">

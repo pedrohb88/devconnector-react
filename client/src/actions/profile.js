@@ -105,7 +105,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
             payload: res.data
         });
 
-        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+        dispatch(setAlert(edit ? 'Perfil Atualizado' : 'Perfil Criado', 'success'));
 
         if(!edit) {
             history.push('/dashboard');
@@ -143,7 +143,7 @@ export const addExperience = (formData, history) => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert('Experience Added', 'success'));
+        dispatch(setAlert('Experiência Adicionada', 'success'));
         history.push('/dashboard');
 
     } catch (error) {
@@ -178,7 +178,7 @@ export const addEducation = (formData, history) => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert('Education Added', 'success'));
+        dispatch(setAlert('Formação Adicionada', 'success'));
         history.push('/dashboard');
 
     } catch (error) {
@@ -207,7 +207,7 @@ export const deleteExperience = id => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert('Experience Removed', 'success'));
+        dispatch(setAlert('Experiência deletada', 'success'));
 
     } catch (error) {
         dispatch({
@@ -230,7 +230,7 @@ export const deleteEducation = id => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert('Education Removed', 'success'));
+        dispatch(setAlert('Formação deletada', 'success'));
 
     } catch (error) {
         dispatch({
