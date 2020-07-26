@@ -1,0 +1,5 @@
+{
+    "MONGO_URI": "mongodb+srv://pedro123:pedro123@devconnector-pfop2.mongodb.net/test?retryWrites=true&w=majority",
+    "JWT_SECRET": "dj1298u321k32109je2198j32109jd1092",
+    "GITHUB_TOKEN": "716ed6d9111e3f863d91a6cc820c1143932fff1b "
+}

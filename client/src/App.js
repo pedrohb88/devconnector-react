@@ -1,26 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Alert from './components/layout/Alert';
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Dashboard from './components/dashboard/Dashboard';
+import ProfileForm from './components/profile-forms/ProfileForm';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
-function App() {
+import PrivateRoute from './components/routing/PrivateRoute';
+
+//Redux
+import {connect} from 'react-redux';
+import store from './store';
+import {loadUser} from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+
+import './App.css';
+import Spinner from './components/layout/Spinner';
+
+if(localStorage.token){
+  setAuthToken(localStorage.token);
+}
+
+function App({authLoading}) {
+
+  //Like componentDidMount
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  if(authLoading) return <Spinner />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Fragment>
+        <Navbar />
+        <Route exact path='/' component={Landing}/>
+        <section className="container">
+          <Alert />
+          <Switch>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/profiles" component={Profiles}/>
+            <Route exact path="/profile/:id" component={Profile}/>
+            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+            <PrivateRoute exact path="/create-profile" component={ProfileForm}/>
+            <PrivateRoute exact path="/edit-profile" component={ProfileForm}/>
+            <PrivateRoute exact path="/add-experience" component={AddExperience}/>
+            <PrivateRoute exact path="/add-education" component={AddEducation}/>
+            <PrivateRoute exact path="/posts" component={Posts}/>
+            <PrivateRoute exact path="/posts/:id" component={Post}/>
+          </Switch>
+        </section>
+      </Fragment>
+    </Router>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  authLoading: state.auth.loading
+});
+
+export default connect(mapStateToProps)(App);
