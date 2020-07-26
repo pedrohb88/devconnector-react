@@ -82,14 +82,14 @@ const ProfileForm = ({ createProfile, getCurrentProfile, history, profile: {prof
         <div className="form-group">
           <select name="status" value={status} onChange={e => onChange(e)}>
             <option value="0">* Selecione seu cargo</option>
-            <option value="Developer">Desenvolvedor(a)</option>
-            <option value="Junior Developer">Desenvolvedor(a) Junior</option>
-            <option value="Senior Developer">Desenvolvedor(a) Senior</option>
-            <option value="Manager">Gerente</option>
-            <option value="Student or Learning">Estudante</option>
-            <option value="Instructor">Instrutor ou Professor</option>
-            <option value="Intern">Estagiário(a)</option>
-            <option value="Other">Outro</option>
+            <option value="Desenvolvedor(a)">Desenvolvedor(a)</option>
+            <option value="Desenvolvedor(a) Junior">Desenvolvedor(a) Junior</option>
+            <option value="Desenvolvedor(a) Senior">Desenvolvedor(a) Senior</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Estudante">Estudante</option>
+            <option value="Instrutor ou Professor">Instrutor ou Professor</option>
+            <option value="Estagiário(a)">Estagiário(a)</option>
+            <option value="Outro">Outro</option>
           </select>
           <small className="form-text">
             Nos dê uma ideia do que você faz atualmente.
