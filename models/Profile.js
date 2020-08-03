@@ -14,6 +14,9 @@ const schema = new mongoose.Schema({
     location: {
         type: String
     },
+    avatar: {
+        type: String
+    },
     status: {
         type: String,
         required: true

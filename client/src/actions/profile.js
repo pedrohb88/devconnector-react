@@ -94,11 +94,16 @@ export const createProfile = (formData, history, edit = false) => async dispatch
     try {
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
         };
 
-        const res = await axios.post('/api/profile', formData, config);
+        let multipartData = new FormData();
+        Object.keys(formData).forEach(key => {
+            multipartData.append(key, formData[key])
+        });
+
+        const res = await axios.post('/api/profile', multipartData, config);
 
         dispatch({
             type: GET_PROFILE,
@@ -112,7 +117,9 @@ export const createProfile = (formData, history, edit = false) => async dispatch
         }
 
     } catch (error) {
-        const errors = error.response.data.errors;
+        console.log(error);
+        const errors = error.response ? error.response.data.errors: null;
+
         if(errors){
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
         }

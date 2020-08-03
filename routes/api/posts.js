@@ -20,16 +20,18 @@ router.post('/', [auth, [
     }
 
     try {
-        const user = await User.findById(req.user.id).select('-password');
-
+        const userProfile = await Profile.findOne({user: req.user.id}).populate('user', ['name']);
         const newPost = new Post({
             text: req.body.text,
-            name: user.name,
-            avatar: user.avatar,
+            name: userProfile.name,
             user: req.user.id
         });
-        
         const post = await newPost.save();
+
+        //post creator avatar
+        const profile = await Profile.findOne({user: post.user}).select('avatar');
+        post.avatar = profile.avatar;
+
         res.json(post);
 
     } catch (error) {
@@ -43,7 +45,13 @@ router.post('/', [auth, [
 // @access  Private
 router.get('/', auth, async (req, res) => {
     try {
-        const posts = await Post.find().sort({date: -1});
+        let posts = await Post.find().sort({date: -1});
+
+        for(i = 0; i < posts.length; i++){
+            const profile = await Profile.findOne({user: posts[i].user}).select('avatar');
+            posts[i].avatar = profile.avatar
+        }
+
         res.json(posts);
         
     } catch (error) {
@@ -61,6 +69,17 @@ router.get('/:postId', auth, async (req, res) => {
         if(!post){
             return res.status(404).json({msg: 'Post not found'});
         }
+
+        //post creator avatar
+        const profile = await Profile.findOne({user: post.user}).select('avatar');
+        post.avatar = profile.avatar;
+
+        //post comments avatar
+        for(i = 0; i < post.comments.length; i++){
+            const p = await Profile.findOne({user: post.comments[i].user}).select('avatar');
+            post.comments[i].avatar = p.avatar;
+        }
+        
         res.json(post);
         
     } catch (error) {
@@ -183,22 +202,28 @@ router.post('/comment/:postId', [auth, [
     }
 
     try {
-        const user = await User.findById(req.user.id).select('-password');
+        const userProfile = await Profile.findOne({user: req.user.id}).populate('user', ['name']);
 
         const post = await Post.findById(req.params.postId);
         if(!post){
             return res.status(404).json({msg: 'Post not found'});
         }
-
+      
         const newComment = {
             text: req.body.text,
-            name: user.name,
-            avatar: user.avatar,
+            name: userProfile.name,
             user: req.user.id
         };
+
         post.comments.unshift(newComment);
         await post.save();
-       
+        
+         //post comments avatar
+         for(i = 0; i < post.comments.length; i++){
+            const p = await Profile.findOne({user: post.comments[i].user}).select('avatar');
+            post.comments[i].avatar = p.avatar;
+        }
+
         res.json(post.comments);
 
     } catch (error) {

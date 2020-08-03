@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ProfileItem = ({ profile: {
-    user: {_id, name, avatar},
+    user: {_id, name},
     status,
     company,
     location,
-    skills
+    skills,
+    avatar
 } }) => {
     return (
         <div className="profile bg-light">
-            <img src={avatar} alt="" className="round-img" />
+            <div>
+                <img src={avatar} alt="" className="round-img" />
+            </div>
             <div>
                 <h2>{name}</h2>
                 <p>{status} {company && <span> na(o) {company}</span>}</p>

@@ -3,11 +3,12 @@ const axios = require('axios');
 const router = express.Router();
 const auth = require('./../../middleware/auth');
 const { check, validationResult } = require('express-validator');
+const uploadHandler = require('../../middleware/multerGoogleStorage');
 
 const Profile = require('./../../models/Profile');
 const User = require('./../../models/User');
-const { default: Axios } = require('axios');
-const { response } = require('express');
+
+const fs = require('fs');
 
 // @route   GET api/profile/me
 // @desc    Get current user's profile
@@ -31,7 +32,8 @@ router.get('/me', auth, async (req, res) => {
 // @route   POST api/profile
 // @desc    Create or update user profile
 // @access  Private
-router.post('/', [auth, [
+
+router.post('/', [auth, uploadHandler.single('avatar'), [
     check('status', 'Cargo é obrigatório').not().isEmpty(),
     check('skills', 'Habilidades são obrigatórias').not().isEmpty(),
 ]], async (req, res) => {
@@ -40,7 +42,6 @@ router.post('/', [auth, [
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     const {
         company,
         website,
@@ -55,9 +56,11 @@ router.post('/', [auth, [
         instagram,
         linkedin
     } = req.body;
+    const avatar = req.file ? req.file.path : null;
 
     const profileFields = {};
     profileFields.user = req.user.id;
+    if (avatar) profileFields.avatar = avatar;
     if (company) profileFields.company = company;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
@@ -100,7 +103,7 @@ router.post('/', [auth, [
         console.error(error.message);
         res.status(500).send('Server Error');
     }
-})
+});
 
 // @route   GET api/profile
 // @desc    Get all profiles
