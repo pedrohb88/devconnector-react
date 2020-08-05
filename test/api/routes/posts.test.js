@@ -7,6 +7,6 @@ describe('GET /posts', () => {
         request(app)
             .get('/api/posts')
             .expect(401)
-            .end(done);
+            .end(() => done());
     });
 });
